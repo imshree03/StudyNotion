@@ -27,11 +27,14 @@ async function sendVerificationEmail(email, otp) {
     console.log("Email sent Successfully", mailResponse);
   } catch (error) {
     console.log("error occured while sending email", error);
+    throw error;
   }
 }
 
 OTPSchema.pre("save", async function (next) {
-  await sendVerificationEmail(this.email, this.otp);
+  if (this.isNew) {
+    await sendVerificationEmail(this.email, this.otp);
+  }
   next();
 });
 
