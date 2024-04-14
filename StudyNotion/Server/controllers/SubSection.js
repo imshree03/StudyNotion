@@ -18,6 +18,7 @@ exports.createSubsection = async (req, res) => {
       video,
       process.env.FOLDER_NAME
     );
+    console.log(uploadDetails);
 
     const SubSectionDetails = await SubSection.create({
       title,
@@ -47,7 +48,7 @@ exports.createSubsection = async (req, res) => {
     return res.status(500).json({
       success: false,
       message: "Internal Server Error",
-      error: error.message,
+      error: error,
     });
   }
 };
