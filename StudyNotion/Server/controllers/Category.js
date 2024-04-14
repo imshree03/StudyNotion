@@ -48,7 +48,7 @@ exports.categoryPageDetails = async (req, res) => {
     const { categoryId } = req.body;
 
     const selectedCategory = await Category.findById(categoryId)
-      .populate("courses")
+      .populate("course")
       .exec();
 
     if (!selectedCategory) {
@@ -61,7 +61,7 @@ exports.categoryPageDetails = async (req, res) => {
     const differentCategories = await Category.find({
       _id: { $ne: categoryId },
     })
-      .populate("courses")
+      .populate("course")
       .exec();
 
     return res.status(200).json({
