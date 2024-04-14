@@ -3,7 +3,7 @@ const router = express.Router();
 const {
   login,
   signup,
-  sendotp,
+  sendOtp,
   changePassword,
 } = require("../controllers/Auth");
 
@@ -17,7 +17,7 @@ const { auth } = require("../middlewares/auth");
 // Authentication Routes
 router.post("/login", login);
 router.post("/signup", signup);
-router.post("/sendotp", sendotp);
+router.post("/sendotp", sendOtp);
 router.post("/changepassword", changePassword);
 
 // Reset Password
