@@ -1,5 +1,6 @@
 const User = require("../models/User");
 const OTP = require("../models/OTP");
+const Profile = require("../models/Profile");
 const otpGenerator = require("otp-generator");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
@@ -38,11 +39,19 @@ exports.sendOtp = async (req, res) => {
       result = await OTP.findOne({ otp });
     }
 
-    const otpPayload = { email, otp };
-    const otpBody = await OTP.create(otpPayload);
-    console.log(otpBody);
+    try {
+      // const otpPayload = { email, otp };
+      const otpBody = await OTP.create({ email: email, otp: otp });
+      console.log(otpBody);
+    } catch (error) {
+      console.log(error);
+      return res.json({
+        success: false,
+        message: "error while inserting otp inside OTP model",
+      });
+    }
 
-    res.status(200).json({
+    return res.status(200).json({
       success: true,
       message: "OTP sent successfully",
       otp,
@@ -101,20 +110,23 @@ exports.signup = async (req, res) => {
     const recentOtp = await OTP.find({ email })
       .sort({ createdAt: -1 })
       .limit(1);
+    console.log(req.body);
     console.log(recentOtp);
+    console.log(otp);
+    console.log("bye");
 
     if (recentOtp.length === 0) {
       return res.status(400).json({
         success: false,
         message: "The OTP is not valid",
       });
-    } else if (otp != recentOtp.otp) {
+    } else if (otp !== recentOtp[0].otp) {
       return res.status(400).json({
         success: false,
-        message: "The OTP is not valid",
+        message: "Wrong OTP",
       });
     }
-
+    console.log("hi");
     const hashedPassword = await bcrypt.hash(password, 10);
 
     let approved = "";
@@ -136,8 +148,7 @@ exports.signup = async (req, res) => {
       accountType,
       approved,
       additionalDetails: profileDetails._id,
-      image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName} 
-      ${lastName}`,
+      image: `https://api.dicebear.com/5.x/initials/svg?seed=${firstName}%20${lastName}`,
     });
 
     return res.status(200).json({
