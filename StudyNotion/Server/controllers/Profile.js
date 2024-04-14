@@ -1,6 +1,6 @@
 const User = require("../models/User");
 const Profile = require("../models/Profile");
-const uploadImageToCloudinary = require("../utils/imageUploader");
+const { uploadImageToCloudinary } = require("../utils/imageUploader");
 
 exports.updateProfile = async (req, res) => {
   try {
@@ -56,7 +56,7 @@ exports.deleteAccount = async (req, res) => {
   }
 };
 
-exports.getAllUserDetails = async (req, res) => {
+exports.getUserDetails = async (req, res) => {
   try {
     const id = req.user.id;
     const userDetails = await User.findById(id)
