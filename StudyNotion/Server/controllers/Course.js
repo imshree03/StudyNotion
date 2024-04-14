@@ -1,4 +1,6 @@
 const Course = require("../models/Course");
+const User = require("../models/User");
+const Category = require("../models/Category");
 const { uploadImageToCloudinary } = require("../utils/imageUploader");
 
 exports.createCourse = async (req, res) => {
@@ -13,7 +15,7 @@ exports.createCourse = async (req, res) => {
       tag,
       category,
       status,
-      insturctions,
+      instructions,
     } = req.body;
 
     const thumbnail = req.files.thumbnailImage;
@@ -64,7 +66,7 @@ exports.createCourse = async (req, res) => {
 
     console.log(thumbnailImage);
 
-    const newCourse = Course.create({
+    const newCourse = await Course.create({
       courseName,
       courseDescription,
       instructor: instructorDetails._id,
@@ -157,7 +159,7 @@ exports.getCourseDetails = async (req, res) => {
           path: "additionalDetails",
         },
       })
-      .populate("Category")
+      .populate("category")
       .populate({
         path: "courseContent",
         populate: {
