@@ -47,7 +47,7 @@ const TimelineSection = () => {
                 </div>
                 <div
                   className={`${
-                    Timeline.length - 1 == i ? "hidden" : "lg:block"
+                    Timeline.length - 1 === i ? "hidden" : "lg:block"
                   } hidden h-14 border-dotted border-r border-richblack-100 bg-richblack-400/0 w-[26px]`}></div>
               </div>
             );

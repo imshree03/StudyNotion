@@ -17,10 +17,12 @@ const userSchema = new mongoose.Schema(
       required: true,
       trim: true,
     },
+
     password: {
       type: String,
       required: true,
     },
+
     accountType: {
       type: String,
       enum: ["Admin", "Student", "Instructor"],
@@ -36,8 +38,8 @@ const userSchema = new mongoose.Schema(
     },
     additionalDetails: {
       type: mongoose.Schema.Types.ObjectId,
-      ref: "Profile",
       required: true,
+      ref: "Profile",
     },
     courses: [
       {
@@ -53,18 +55,16 @@ const userSchema = new mongoose.Schema(
     },
     image: {
       type: String,
-      required: true,
     },
     courseProgress: [
       {
         type: mongoose.Schema.Types.ObjectId,
-        ref: "CourseProgress",
+        ref: "courseProgress",
       },
     ],
   },
-  {
-    timestamps: true,
-  }
+  { timestamps: true }
 );
 
-module.exports = mongoose.model("User", userSchema);
+// Export the Mongoose model for the user schema, using the name "user"
+module.exports = mongoose.model("user", userSchema);

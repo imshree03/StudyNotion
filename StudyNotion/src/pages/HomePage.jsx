@@ -1,15 +1,16 @@
-import React from "react";
-import { Link } from "react-router-dom";
-import { FaArrowRight } from "react-icons/fa";
-import Button from "../components/core/Homepage/Button";
-import HighlightText from "../components/core/Homepage/HighlightText";
 import Banner from "../assets/Images/banner.mp4";
-import CodeBlocks from "../components/core/Homepage/CodeBlocks";
-import TimelineSection from "../components/core/Homepage/TimelineSection";
-import LearningLanguageSection from "../components/core/Homepage/LearningLanguageSection";
-import InstructorSection from "../components/core/Homepage/InstructorSection";
 import Footer from "../components/common/Footer";
+import ReviewSlider from "../components/common/ReviewSlider";
+import Button from "../components/core/Homepage/Button";
+import CodeBlocks from "../components/core/Homepage/CodeBlocks";
 import ExploreMore from "../components/core/Homepage/ExploreMore";
+import HighlightText from "../components/core/Homepage/HighlightText";
+import InstructorSection from "../components/core/Homepage/InstructorSection";
+import LearningLanguageSection from "../components/core/Homepage/LearningLanguageSection";
+import TimelineSection from "../components/core/Homepage/TimelineSection";
+import React from "react";
+import { FaArrowRight } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -158,6 +159,12 @@ const HomePage = () => {
 
       <div className="relative mx-auto my-20 flex w-11/12 max-w-maxContent flex-col items-center justify-between gap-8 bg-richblack-900 text-white">
         <InstructorSection />
+      </div>
+      <div className="mx-auto text-white w-11/12 max-w-maxContent">
+        <h1 className="text-center text-4xl font-semibold mt-8">
+          Reviews from other learners
+        </h1>
+        <ReviewSlider />
       </div>
 
       <Footer />
