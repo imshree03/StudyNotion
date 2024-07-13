@@ -85,11 +85,11 @@ exports.signup = async (req, res) => {
       about: null,
       contactNumber: null,
     });
+    console.log(profileDetails);
     const user = await User.create({
       firstName,
       lastName,
       email,
-      contactNumber,
       password: hashedPassword,
       accountType: accountType,
       approved: approved,

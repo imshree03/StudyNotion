@@ -177,7 +177,7 @@ function Navbar() {
               </button>
             </Link>
           )}
-          {token !== null && <ProfileD  ropDown />}
+          {token !== null && <ProfileDropDown />}
         </div>
         <div className="mr-4 md:hidden">
           {ToggleMenu ? (
