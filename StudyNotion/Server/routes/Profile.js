@@ -8,8 +8,7 @@ const {
   updateDisplayPicture,
   getEnrolledCourses,
   instructorDashboard,
-} = require("../controllers/profile");
-
+} = require("../controllers/Profile");
 
 router.delete("/deleteProfile", auth, deleteAccount);
 router.put("/updateProfile", auth, updateProfile);
